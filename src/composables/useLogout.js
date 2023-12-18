@@ -1,4 +1,4 @@
-import { ref } from "vue"
+import { ref } from 'vue'
 import { auth } from '@/firebase/config';
 import { signOut } from "firebase/auth";
 

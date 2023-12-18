@@ -1,12 +1,23 @@
 <template>
   <div class="home">
-    <p>Homepage</p>
+    <div v-if="error" class="error"> {{ error }} </div>
+    <div v-if="documents">
+      <div v-for="doc in documents" :key="doc.id">
+        <span> {{ doc.title }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import getCollection from '@/composables/getCollection';
 
 export default {
   name: 'HomeView',
+  setup(){
+    const { error, documents } = getCollection('playlists');
+
+    return { error, documents }
+  }
 }
 </script>
