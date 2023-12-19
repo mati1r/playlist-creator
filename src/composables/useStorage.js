@@ -1,5 +1,5 @@
 import { storage } from '@/firebase/config';
-import { ref as storageReference, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref as storageReference, uploadBytes, getDownloadURL, deleteObject} from 'firebase/storage';
 import { ref } from 'vue'
 import getUser from './getUser';
 
@@ -14,17 +14,31 @@ function useStorage(){
         filePath.value = `covers/${user.value.uid}/${file.name}`
         const storageRef = storageReference(storage, filePath.value)
 
-        try{
+        try
+        {
             await uploadBytes(storageRef, file)
             url.value = await getDownloadURL(storageRef)
-         }
-         catch(err) {
-             console.log(err.message)
-             error.value = err.message
-         }
+        }
+        catch(err) 
+        {
+            error.value = err.message
+        }
     }
 
-    return { error ,url, filePath, uploadImage }
+    async function deleteImage(path){
+        const storageRef = storageReference(storage, path)
+
+        try
+        {
+            await deleteObject(storageRef)
+        }
+        catch(err)
+        {
+            error.value = err.message
+        }
+    }
+
+    return { error ,url, filePath, uploadImage, deleteImage }
 }
 
 export default useStorage

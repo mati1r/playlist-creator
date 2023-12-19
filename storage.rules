@@ -1,8 +1,11 @@
 rules_version = '2';
+
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if false;
+    match /covers/{userId}/{allPaths=**} {
+      allow read, create: if request.auth != null;
+      //allow delete and update only for a user that owns a folder (userId)
+      allow delete, update: if request.auth.uid == userId;
     }
   }
 }

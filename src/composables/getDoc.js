@@ -22,7 +22,7 @@ function getDocument(collectionName, id){
     }, (err) => {
         console.log(err.message)
         document.value = null
-        error = "Could not fetch data"
+        error.value = "Could not fetch data"
     })
 
     watchEffect((onInvalidate) => {
