@@ -10,7 +10,6 @@ function getCollection(collectionName){
     const q = query(collectionRef, orderBy("createdAt", "asc"));
 
     const unsub = onSnapshot(q, (docSnap) =>{
-        console.log("snapshot")
         let results = []
         docSnap.docs.forEach(doc => {
            doc.data().createdAt && results.push({ ...doc.data(), id: doc.id})

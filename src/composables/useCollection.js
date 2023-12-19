@@ -12,8 +12,9 @@ function useCollection(collectionName){
 
         try
         {
-            await addDoc(collection (db, collectionName), doc)
+            const res = await addDoc(collection (db, collectionName), doc)
             isPending.value = false
+            return res
         }
         catch(err)
         {
