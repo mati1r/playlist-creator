@@ -1,5 +1,14 @@
 # playlist-creator
 
+## About
+```
+Part of Build Web Apps with Vue JS 3 & Firebase udemy course.
+
+Modifications that will be added in the future
+  - posibility to attach youtube or spotify link to the song
+  - liking system
+
+```
 ## Project setup
 ```
 npm install
